@@ -102,7 +102,8 @@ you can try to solve this by going to ::
     Docker > Settings > Resources > File Sharing
 
 and selecting the drive to be shared.
-Step 2: If that fails as well, first resettin Docker to factory defaults should help. Got to ::
+
+Step 2: If that fails as well, first resetting Docker to factory defaults should help. Got to ::
 
     Docker > Troubleshooting > Reset to factory defaults
     

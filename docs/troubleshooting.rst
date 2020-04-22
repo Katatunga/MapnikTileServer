@@ -13,11 +13,12 @@ Can't start docker container on Windows
 ---------------------------------------
 
 When downloading the sourcecode via `Github Desktop
-<https://desktop.github.com/>`_ it can happen, that every file is refactor for
-windows usage, but when try to run the code on a docker container (linux) it
+<https://desktop.github.com/>`_ it can happen, that every file is refactored for
+windows usage, but when trying to run the code on a docker container (linux) it
 will crash!
 
-So to solve the issue, try to download via the ``CLI`` or via VS Code.
+So to solve the issue, try to download via the ``CLI`` or via VS Code. If that doesn't work either, try 
+downloading the .zip-Archive from Github.
 
 bash: fork: retry
 -----------------
@@ -30,13 +31,15 @@ error::
     bash: fork: retry: Die Ressource ist zur Zeit nicht verfügbar
     bash: fork: retry: Die Ressource ist zur Zeit nicht verfügbar
 
+    (bash: fork: retry: the resource is temporarily unavailable)
+
 To solve this error, expand the process limits of your target user. For the user
 ``foo`` the command is::
 
     $ echo 'foo             soft    nproc            100' | sudo tee --append /etc/security/limits.conf
     $ sudo reboot
 
-After the reboot, it shouldn't shown the error message again. If this message
+After the reboot, it shouldn't show the error message again. If this message
 isn't gone after restart, you may need to use a another hoster. On
 :ref:`server_hoster` you can watch out for a new working hoster.
 
@@ -45,7 +48,7 @@ unable to find face-name 'unifont Medium' in FontSet 'fontset-0'
 
 If the error ``unable to find face-name 'unifont Medium' in FontSet`` occurs, it
 means that the old version of ``unifont``is missing. The team of 
-``openstreetmap-carto`` added as requirements the new and old version of unifont
+``openstreetmap-carto`` added the new and old version of unifont as requirements
 to load one of the two versions. So if you get an error like below, just
 ignore it :) ::
 
@@ -53,7 +56,7 @@ ignore it :) ::
     celeryworker_1   | Mapnik LOG> 2020-02-10 12:17:53: warning: unable to find face-name 'unifont Medium' in FontSet 'fontset-1'
     celeryworker_1   | Mapnik LOG> 2020-02-10 12:17:53: warning: unable to find face-name 'unifont Medium' in FontSet 'fontset-2'
 
-How to delte just all django ohdm tables
+How to delete just all django ohdm tables
 ----------------------------------------
 
 To just delete django ``OHDM`` tables and not the other django tables like users
@@ -64,12 +67,12 @@ use::
 Cannot start service
 --------------------
 
-When you try to start the containers and you get a error like::
+When you try to start the containers and you get an error like::
 
     ERROR: for postgres  Cannot start service postgres: Ports are not available: listen tcp 127.0.0.1:5432: bind: Der Zugriff auf einen Socket war aufgrund der Zugriffsrechte des Sockets unzulĂ¤ssig.
     ERROR: Encountered errors while bringing up the project.
 
-Than check if no other process is running on ``5432``, ``5555`` and ``8000``.
+Then check if no other process is running on ``5432``, ``5555`` and ``8000``.
 
 On linux & mac you can use::
 
@@ -84,8 +87,23 @@ On Windows use CMD::
 No such file or directory
 -------------------------
 
-When trying Docker on Windows on the first time, sometimes Windows will add ``\r``
-on each file, but linux don't like it. If you get some error like below, try to download
-the repo on a different way!::
+When trying Docker on Windows for the first time, sometimes Windows will add ``\r``
+on each file, but linux doesn't like it. If you get some error like below, try to download
+the repo in a different way (See Can't start docker container on Windows)!::
 
     /usr/bin/env: 'python\r': No such file or directory
+
+Docker doesn't have access to a drive (Docker Desktop for Windows)
+------------------------------------------------------------------
+
+Step 1: If during any step of the installation Docker fails to access a drive (probably stating it fails for unknown reasons), 
+you can try to solve this by going to ::
+
+    Docker > Settings > Resources > File Sharing
+
+and selecting the drive to be shared.
+Step 2: If that fails as well, first resettin Docker to factory defaults should help. Got to ::
+
+    Docker > Troubleshooting > Reset to factory defaults
+    
+After resetting repeat step 1.
